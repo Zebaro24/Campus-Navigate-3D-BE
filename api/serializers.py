@@ -70,4 +70,4 @@ class FlightLocationSerializer(serializers.ModelSerializer):
 class FlightLocationListSerializer(serializers.ModelSerializer):
     class Meta:
         model = FlightLocation
-        fields = ['id', 'name']
+        fields = ['id', 'title']
