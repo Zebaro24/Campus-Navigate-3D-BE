@@ -27,8 +27,6 @@ SECRET_KEY = 'django-insecure-@w4&zy=w1ikbh2og6=ux*((x6!u()o!&su=+*10@(8c@0nj)qp
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -129,3 +127,15 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Для CSRF защиты — разрешаем запросы с фронта
+CSRF_TRUSTED_ORIGINS = [
+    'https://university.zebaro.pp.ua',
+]
+
+# Разрешённые хосты
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'university.zebaro.pp.ua',
+]
