@@ -2,8 +2,10 @@ from datetime import datetime, timezone
 
 from django.http import Http404, FileResponse
 from django.utils.http import http_date
+from rest_framework.response import Response
 from rest_framework.generics import ListAPIView, RetrieveAPIView
 from rest_framework.views import APIView
+from rest_framework import status
 from .models import FlightLocation, UniversityModel
 from .serializers import FlightLocationSerializer, FlightLocationListSerializer
 
@@ -34,3 +36,9 @@ class ActiveUniversityModelFileView(APIView):
         response['Expires'] = http_date(datetime.now(tz=timezone.utc).timestamp() + 86400)
 
         return response
+
+class FlightLocationByCategoryAPIView(APIView):
+    def get(self, request, category_name):
+        locations = FlightLocation.objects.filter(category__iexact=category_name)
+        serializer = FlightLocationListSerializer(locations, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
