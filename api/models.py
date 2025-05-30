@@ -20,9 +20,17 @@ class FlightLocation(models.Model):
     CAMERA_VIEW_DIRECTION_CHOICES = [
         ('inside', 'Дивитися всередину'),
         ('outside', 'Дивитися назовні'),
+        ('direction', 'Дивитися за напрямком руху'),
+    ]
+
+    CATEGORY_CHOICES = [
+        ('main', 'Головна'),
+        ('important', 'Важливі місця'),
+        ('cabinet', 'Кабінети'),
     ]
 
     name = models.CharField(max_length=100, verbose_name="Назва")
+    category = models.CharField(max_length=20, blank=True, null=True, choices=CATEGORY_CHOICES, verbose_name="Категорія")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     description = models.TextField(verbose_name="Опис")
     image = models.ImageField(upload_to='place_images/', blank=True, null=True, verbose_name="Зображення (опціонально)")

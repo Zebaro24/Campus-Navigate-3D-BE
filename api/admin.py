@@ -1,5 +1,3 @@
-import os
-
 from django import forms
 from django.contrib import admin
 from .models import FlightLocation, FlightPoint, UniversityModel
@@ -13,13 +11,13 @@ class FlightPointInline(admin.TabularInline):
 
 @admin.register(FlightLocation)
 class FlightLocationAdmin(admin.ModelAdmin):
-    list_display = ('name', 'title', 'flight_type')
+    list_display = ('name', 'category', 'flight_type')
     list_filter = ('flight_type', 'camera_view_direction')
     search_fields = ('name', 'title', 'description')
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'title', 'description', 'image', 'flight_type', 'speed', 'camera_view_direction', 'camera_pitch'),
+            'fields': ('name', 'category', 'title', 'description', 'image', 'flight_type', 'speed', 'camera_view_direction', 'camera_pitch'),
         }),
         ('Положення камери', {
             'fields': ('position_x', 'position_y', 'position_z'),
