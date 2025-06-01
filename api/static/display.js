@@ -58,5 +58,5 @@ whenReady('#select2-id_camera_view_direction-container', () => {
     toggleFields();
     const observer = new MutationObserver(toggleFields);
 
-    observer.observe(flightTypeSelect, { childList: true, characterData: true, subtree: true });
+    observer.observe(flightTypeSelect, {childList: true, characterData: true, subtree: true});
 });

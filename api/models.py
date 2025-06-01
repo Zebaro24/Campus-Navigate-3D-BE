@@ -1,13 +1,11 @@
-from datetime import datetime
-import os
-
 from django.db import models
 
+from datetime import datetime
 
-def model_file_path(instance, filename):
-    ext = os.path.splitext(filename)[1]
+
+def model_file_path(instance, _):
     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
-    return f'models_3d/model_{instance.version}_{timestamp}{ext}'
+    return f'models_3d/model_{instance.version}_{timestamp}.glb'
 
 
 class FlightLocation(models.Model):
@@ -30,7 +28,8 @@ class FlightLocation(models.Model):
     ]
 
     name = models.CharField(max_length=100, verbose_name="Назва")
-    category = models.CharField(max_length=20, blank=True, null=True, choices=CATEGORY_CHOICES, verbose_name="Категорія")
+    category = models.CharField(max_length=20, blank=True, null=True, choices=CATEGORY_CHOICES,
+                                verbose_name="Категорія")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     description = models.TextField(verbose_name="Опис")
     image = models.ImageField(upload_to='place_images/', blank=True, null=True, verbose_name="Зображення (опціонально)")

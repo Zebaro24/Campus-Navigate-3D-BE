@@ -19,6 +19,7 @@ class FlightLocationDetailAPIView(RetrieveAPIView):
     queryset = FlightLocation.objects.all()
     serializer_class = FlightLocationSerializer
 
+
 class ActiveUniversityModelFileView(APIView):
     def get(self, request):
         model = UniversityModel.objects.filter(is_active=True).first()
@@ -36,6 +37,7 @@ class ActiveUniversityModelFileView(APIView):
         response['Expires'] = http_date(datetime.now(tz=timezone.utc).timestamp() + 86400)
 
         return response
+
 
 class FlightLocationByCategoryAPIView(APIView):
     def get(self, request, category_name):

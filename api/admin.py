@@ -36,6 +36,7 @@ class FlightLocationAdmin(admin.ModelAdmin):
     class Media:
         js = ('display.js',)
 
+
 class UniversityModelForm(forms.ModelForm):
     class Meta:
         model = UniversityModel
