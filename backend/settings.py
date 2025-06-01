@@ -45,7 +45,6 @@ JAZZMIN_SETTINGS = {
     "welcome_sign": "Ласкаво просимо, адмін!",
     "show_sidebar": True,
     "navigation_expanded": True,
-    "show_ui_builder": True,
     "related_modal_active": True,
 }
 

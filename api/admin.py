@@ -4,7 +4,7 @@ from .models import FlightLocation, FlightPoint, UniversityModel
 
 admin.site.site_header = '3D Університет'
 admin.site.site_title = 'Admin 3D Uni'
-admin.site.index_title = '📊 Панель управління'
+admin.site.index_title = 'Панель управління'
 
 
 class FlightPointInline(admin.TabularInline):
