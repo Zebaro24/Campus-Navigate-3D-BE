@@ -1,9 +1,18 @@
 from django.db import models
+from django.db.models.signals import post_delete
+from django.dispatch import receiver
 
 from datetime import datetime
+from os import path
 
 
-def model_file_path(instance, _):
+def image_file_path(_instance, filename):
+    ext = path.splitext(filename)[1]
+    timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
+    return f'images/image_{timestamp}{ext}'
+
+
+def model_file_path(instance, _filename):
     timestamp = datetime.now().strftime('%Y-%m-%d_%H-%M-%S')
     return f'models_3d/model_{instance.version}_{timestamp}.glb'
 
@@ -32,7 +41,7 @@ class FlightLocation(models.Model):
                                 verbose_name="Категорія")
     title = models.CharField(max_length=200, verbose_name="Заголовок")
     description = models.TextField(verbose_name="Опис")
-    image = models.ImageField(upload_to='place_images/', blank=True, null=True, verbose_name="Зображення (опціонально)")
+    image = models.ImageField(upload_to=image_file_path, blank=True, null=True, verbose_name="Зображення (опціонально)")
     flight_type = models.CharField(max_length=20, blank=True, choices=FLIGHT_TYPE_CHOICES, default=None,
                                    verbose_name="Дiя камери")
 
@@ -54,6 +63,12 @@ class FlightLocation(models.Model):
     class Meta:
         verbose_name = 'Локація обльоту'
         verbose_name_plural = 'Локації обльоту'
+
+
+@receiver(post_delete, sender=FlightLocation)
+def delete_image_file(_sender, instance, **_kwargs):
+    if instance.image:
+        instance.image.delete(save=False)
 
 
 class FlightPoint(models.Model):
@@ -89,3 +104,9 @@ class UniversityModel(models.Model):
     class Meta:
         verbose_name = 'Модель університету'
         verbose_name_plural = 'Моделі університету'
+
+
+@receiver(post_delete, sender=UniversityModel)
+def delete_model_file(_sender, instance, **_kwargs):
+    if instance.model_file:
+        instance.model_file.delete(save=False)

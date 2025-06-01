@@ -1,6 +1,6 @@
 .env
 models_3d
-place_images
+images
 staticfiles
 
 .idea
