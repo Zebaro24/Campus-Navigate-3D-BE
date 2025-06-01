@@ -59,7 +59,6 @@ class FlightLocationSerializer(serializers.ModelSerializer):
             data['z'] = -instance.position_y
             data['yaw'] = math.radians(instance.yaw)
             data['pitch'] = math.radians(instance.pitch)
-            data['roll'] = instance.roll
 
         if instance.flight_type == "points_flight":
             data['speed'] = instance.speed

@@ -48,7 +48,6 @@ class FlightLocation(models.Model):
 
     yaw = models.FloatField(blank=True, null=True, verbose_name="Азимут (yaw, X), °")
     pitch = models.FloatField(blank=True, null=True, verbose_name="Нахил (pitch, Y), °")
-    roll = models.FloatField(blank=True, null=True, verbose_name="Крен (roll, Z), °")
 
     def __str__(self):
         return f"{self.name} ({self.get_flight_type_display()})"

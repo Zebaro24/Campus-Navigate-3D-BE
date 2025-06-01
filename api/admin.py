@@ -23,7 +23,7 @@ class FlightLocationAdmin(admin.ModelAdmin):
             'fields': ('position_x', 'position_y', 'position_z'),
         }),
         ('Орієнтація камери', {
-            'fields': ('yaw', 'pitch', 'roll'),
+            'fields': ('yaw', 'pitch'),
         }),
     )
     inlines = [FlightPointInline]
