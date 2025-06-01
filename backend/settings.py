@@ -31,6 +31,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -40,6 +41,33 @@ INSTALLED_APPS = [
     'api.apps.ApiConfig',
     'rest_framework',
 ]
+
+JAZZMIN_SETTINGS = {
+    "site_logo": "logo.svg",
+    "site_logo_classes": "bg-dark p-1 rounded-sm",  # классы оформления
+    "welcome_sign": "Ласкаво просимо, адмін!",
+    "show_sidebar": True,
+    "navigation_expanded": True,
+    "show_ui_builder": True,
+    "related_modal_active": True,
+}
+
+JAZZMIN_UI_TWEAKS = {
+    "brand_colour": "navbar-primary",
+    "accent": "accent-lightblue",
+    "navbar": "navbar-primary navbar-dark",
+    "theme": "cyborg",
+    "button_classes": {
+        "primary": "btn-primary",
+        "secondary": "btn-secondary",
+        "info": "btn-info",
+        "warning": "btn-warning",
+        "danger": "btn-danger",
+        "success": "btn-success"
+    },
+    "actions_sticky_top": True,
+    "navbar_fixed": True,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -122,6 +150,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
 STATIC_URL = 'static/'
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field

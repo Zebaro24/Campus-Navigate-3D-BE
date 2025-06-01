@@ -2,6 +2,10 @@ from django import forms
 from django.contrib import admin
 from .models import FlightLocation, FlightPoint, UniversityModel
 
+admin.site.site_header = '3D Університет'
+admin.site.site_title = 'Admin 3D Uni'
+admin.site.index_title = '📊 Панель управління'
+
 
 class FlightPointInline(admin.TabularInline):
     model = FlightPoint
@@ -17,7 +21,8 @@ class FlightLocationAdmin(admin.ModelAdmin):
 
     fieldsets = (
         (None, {
-            'fields': ('name', 'category', 'title', 'description', 'image', 'flight_type', 'speed', 'camera_view_direction', 'camera_pitch'),
+            'fields': ('name', 'category', 'title', 'description', 'image', 'flight_type', 'speed',
+                       'camera_view_direction', 'camera_pitch'),
         }),
         ('Положення камери', {
             'fields': ('position_x', 'position_y', 'position_z'),
@@ -41,6 +46,7 @@ class UniversityModelForm(forms.ModelForm):
         if not file.name.endswith(('.glb',)):
             raise forms.ValidationError('Підтримуються тільки .glb файли')
         return file
+
 
 @admin.register(UniversityModel)
 class UniversityModelAdmin(admin.ModelAdmin):

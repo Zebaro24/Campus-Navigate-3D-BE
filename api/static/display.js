@@ -1,15 +1,23 @@
-document.addEventListener('DOMContentLoaded', function() {
+function whenReady(selector, callback) {
+    const el = document.querySelector(selector);
+    if (el) {
+        callback(el);
+    } else {
+        setTimeout(() => whenReady(selector, callback), 10);
+    }
+}
 
-    const flightTypeSelect = document.getElementById('id_flight_type');
+whenReady('#select2-id_camera_view_direction-container', () => {
+    const flightTypeSelect = document.querySelector('#select2-id_flight_type-container');
 
-    const speed = document.querySelector('.form-row.field-speed')
-    const cameraViewRow = document.querySelector('.form-row.field-camera_view_direction')
-    const cameraPitch = document.querySelector('.form-row.field-camera_pitch')
+    const speed = document.querySelector('div.form-group.field-speed')
+    const cameraViewRow = document.querySelector('div.form-group.field-camera_view_direction')
+    const cameraPitch = document.querySelector('div.form-group.field-camera_pitch')
 
-    const position = document.querySelector('[aria-labelledby="fieldset-0-1-heading"]')
-    const rotation = document.querySelector('[aria-labelledby="fieldset-0-2-heading"]')
+    const position = document.querySelector('#jazzy-tabs > li:nth-child(2)')
+    const rotation = document.querySelector('#jazzy-tabs > li:nth-child(3)')
 
-    const inlineSection = document.getElementById('flight_points-group');
+    const inlineSection = document.querySelector('#jazzy-tabs > li:nth-child(4)');
 
 
     function showEl(el) {
@@ -21,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function toggleFields() {
-        const val = flightTypeSelect.value;
+        const val = flightTypeSelect.title;
 
         hideEl(speed)
         hideEl(cameraViewRow)
@@ -30,17 +38,17 @@ document.addEventListener('DOMContentLoaded', function() {
         hideEl(rotation)
         hideEl(inlineSection)
 
-        if (val === 'static_frame') {
+        if (val === 'Статичний кадр') {
             showEl(position)
             showEl(rotation)
         }
-        if (val === 'points_flight') {
+        if (val === 'Обліт по точках') {
             showEl(speed)
             showEl(cameraViewRow)
             showEl(cameraPitch)
             showEl(inlineSection)
         }
-        if (val === 'panorama') {
+        if (val === 'Панорама навколо') {
             showEl(speed)
             showEl(cameraPitch)
             showEl(position)
@@ -48,5 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     toggleFields();
-    flightTypeSelect.addEventListener('change', toggleFields);
+    const observer = new MutationObserver(toggleFields);
+
+    observer.observe(flightTypeSelect, { childList: true, characterData: true, subtree: true });
 });
