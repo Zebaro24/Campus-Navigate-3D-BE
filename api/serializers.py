@@ -11,8 +11,8 @@ class FlightPointSerializer(serializers.ModelSerializer):
 
     def to_representation(self, instance):
         data = {'x': instance.position_x,
-                'y': instance.position_z,
-                'z': -instance.position_y
+                'y': instance.position_y,
+                'z': instance.position_z
                 }
         return data
 
@@ -55,8 +55,8 @@ class FlightLocationSerializer(serializers.ModelSerializer):
 
         if instance.flight_type == "static_frame":
             data['x'] = instance.position_x
-            data['y'] = instance.position_z
-            data['z'] = -instance.position_y
+            data['y'] = instance.position_y
+            data['z'] = instance.position_z
             data['yaw'] = math.radians(instance.yaw)
             data['pitch'] = math.radians(instance.pitch)
 
@@ -70,8 +70,8 @@ class FlightLocationSerializer(serializers.ModelSerializer):
             data['speed'] = instance.speed
             data['camera_pitch'] = math.radians(instance.camera_pitch)
             data['x'] = instance.position_x
-            data['y'] = instance.position_z
-            data['z'] = -instance.position_y
+            data['y'] = instance.position_y
+            data['z'] = instance.position_z
 
         return data
 
