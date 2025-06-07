@@ -21,6 +21,7 @@ REST-API для керування 3D-навігацією по універси
 - 📍 **FlightLocation API**  
   - Список точок (`GET /api/locations/`)  
   - Деталі точки (`GET /api/locations/{id}/`)
+  - Список точок по категорії (`GET /api/locations/category/{category_name}`)  
 
 - 🗺 **Active Model File Endpoint**  
   - Повертає актуальний `.glb` файл моделі (`GET /api/active-model-file/`)
@@ -89,6 +90,9 @@ REST-API для керування 3D-навігацією по універси
 
 * **Деталі локації**
   `GET http://localhost:8000/api/locations/1/`
+
+* **Список локацій за категорією**
+  `GET http://localhost:8000/api/locations/category/important/`
 
 * **Отримати активну модель**
   `GET http://localhost:8000/api/active-model-file/`
