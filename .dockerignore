@@ -1,0 +1,10 @@
+models_3d
+images
+.env
+__pycache__/
+*.pyc
+docker/
+.gitignore
+*.md
+.git
+.idea

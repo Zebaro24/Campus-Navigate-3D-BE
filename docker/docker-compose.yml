@@ -1,0 +1,31 @@
+services:
+  campus-navigate-3d-db:
+    image: postgres:16
+    container_name: campus-navigate-3d-db
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+    volumes:
+      - ${DB_HOST}:/var/lib/postgresql/data
+
+  campus-navigate-3d-be:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    image: campus-navigate-3d-be
+    container_name: campus-navigate-3d-be
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_HOST=campus-navigate-3d-db
+      - SECRET_KEY
+      - DEBUG
+    depends_on:
+      - campus-navigate-3d-db
+    ports:
+      - "8000:8000"
+    volumes:
+      - ${MODELS_HOST}:/app/models_3d
+      - ${IMAGES_HOST}:/app/images
