@@ -3,28 +3,9 @@
 import os
 import sys
 
-from time import sleep
-from django.db import connections
-from django.db.utils import OperationalError
-
-
 MAX_ATTEMPTS = 8
 DELAY_SECONDS = 5
 
-def wait_for_db():
-    attempt = 1
-    while attempt <= MAX_ATTEMPTS:
-        try:
-            db_conn = connections['default']
-            db_conn.cursor()
-            print("✅ БД доступна!")
-            return
-        except OperationalError:
-            print(f"❌ Немає підключення до БД. Спроба {attempt}/{MAX_ATTEMPTS}")
-            attempt += 1
-            sleep(DELAY_SECONDS)
-    print("🚫 Не вдалося під'єднатися до БД після усіх спроб")
-    exit(1)
 
 def main():
     """Run administrative tasks."""
@@ -37,7 +18,7 @@ def main():
             "available on your PYTHONPATH environment variable? Did you "
             "forget to activate a virtual environment?"
         ) from exc
-    wait_for_db()
+
     execute_from_command_line(sys.argv)
 
 
