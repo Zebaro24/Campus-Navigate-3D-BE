@@ -66,7 +66,7 @@ class FlightLocation(models.Model):
 
 
 @receiver(post_delete, sender=FlightLocation)
-def delete_image_file(_sender, instance, **_kwargs):
+def delete_image_file(sender, instance, **_kwargs):
     if instance.image:
         instance.image.delete(save=False)
 
@@ -107,6 +107,6 @@ class UniversityModel(models.Model):
 
 
 @receiver(post_delete, sender=UniversityModel)
-def delete_model_file(_sender, instance, **_kwargs):
+def delete_model_file(sender, instance, **_kwargs):
     if instance.model_file:
         instance.model_file.delete(save=False)
