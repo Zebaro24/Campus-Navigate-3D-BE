@@ -7,13 +7,13 @@ services:
       - POSTGRES_USER
       - POSTGRES_PASSWORD
     volumes:
-      - ${DB_HOST}:/var/lib/postgresql/data
+      - ./database:/var/lib/postgresql/data
 
   campus-navigate-3d-be:
     build:
-      context: ..
-      dockerfile: docker/Dockerfile
-    image: campus-navigate-3d-be
+      context: .
+      dockerfile: Dockerfile
+    image: ghcr.io/zebaro24/campus-navigate-3d-be:latest
     container_name: campus-navigate-3d-be
     restart: unless-stopped
     environment:
@@ -21,11 +21,10 @@ services:
       - POSTGRES_PASSWORD
       - POSTGRES_HOST=campus-navigate-3d-db
       - SECRET_KEY
-      - DEBUG
     depends_on:
       - campus-navigate-3d-db
     ports:
-      - "8000:8000"
+      - "${SERVER_PORT}:8000"
     volumes:
-      - ${MODELS_HOST}:/app/models_3d
-      - ${IMAGES_HOST}:/app/images
+      - ./models_3d:/app/models_3d
+      - ./images:/app/images
