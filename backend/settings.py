@@ -157,12 +157,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For CSRF protection - allow requests from the edge
 CSRF_TRUSTED_ORIGINS = [
-    'https://university.zebaro.pp.ua',
+    'https://campus.zebaro.dev',
 ]
 
 # Allowed hosts
 ALLOWED_HOSTS = [
     'localhost',
     '127.0.0.1',
-    'university.zebaro.pp.ua',
+    'campus.zebaro.dev',
 ]
