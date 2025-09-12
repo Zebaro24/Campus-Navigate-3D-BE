@@ -1,9 +1,11 @@
 models_3d
 images
+database
 .env
 __pycache__/
 *.pyc
-docker/
+Dockerfile
+docker-compose.yml
 .gitignore
 *.md
 .git

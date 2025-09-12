@@ -1,6 +1,7 @@
 .env
 models_3d
 images
+database
 staticfiles
 
 .idea
