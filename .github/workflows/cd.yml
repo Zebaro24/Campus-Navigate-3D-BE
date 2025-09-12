@@ -60,7 +60,12 @@ jobs:
       name: prod
       url: https://campus.zebaro.dev/admin
     steps:
-      - name: Copy docker-compose and .env to server
+      - name: Checkout only docker-compose.yml
+        uses: actions/checkout@v3
+        with:
+          sparse-checkout: docker-compose.yml
+          fetch-depth: 1
+      - name: Copy docker-compose
         uses: appleboy/scp-action@v0.1.3
         with:
           host: ${{ secrets.SERVER_HOST }}
