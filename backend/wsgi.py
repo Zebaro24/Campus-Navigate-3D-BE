@@ -8,11 +8,13 @@ https://docs.djangoproject.com/en/5.2/howto/deployment/wsgi/
 """
 
 import os
+from pathlib import Path
+from time import sleep
 
 from django.core.wsgi import get_wsgi_application
 from django.db import connections
 from django.db.utils import OperationalError
-from time import sleep
+from whitenoise import WhiteNoise
 
 def wait_for_db(max_attempts=8, delay=5):
     attempt = 1
@@ -34,3 +36,7 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 wait_for_db()
 
 application = get_wsgi_application()
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+IMAGES_DIR = BASE_DIR / "images"
+application = WhiteNoise(application, root=IMAGES_DIR, prefix='images/')
