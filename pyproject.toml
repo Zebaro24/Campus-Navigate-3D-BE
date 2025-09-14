@@ -16,5 +16,6 @@ django-jazzmin = "^3.0.1"
 python-decouple = "^3.8"
 gunicorn = "^23.0.0"
 whitenoise = "^6.10.0"
+django-cors-headers = "^4.8.0"
 
 [tool.poetry.group.dev.dependencies]
