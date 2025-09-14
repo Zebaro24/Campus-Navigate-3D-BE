@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "campus-navigate-3d-be"
-version = "0.1.0"
+version = "0.1.1"
 description = "🧭 Django REST API for managing interactive 3D campus navigation. Provides flight paths, dynamic model loading, and admin tools for point management."
 authors = ["Zebaro <denok100100@gmail.com>"]
 license = "MIT"
