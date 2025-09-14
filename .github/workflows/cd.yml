@@ -88,7 +88,6 @@ jobs:
             export POSTGRES_USER=${{ secrets.POSTGRES_USER }}
             export POSTGRES_PASSWORD=${{ secrets.POSTGRES_PASSWORD }}
             export SECRET_KEY=${{ secrets.SECRET_KEY }}
-            export SERVER_PORT=${{ vars.SERVER_PORT }}
             
             docker compose -p campus-navigate-3d up -d --pull always
             docker image prune -f
