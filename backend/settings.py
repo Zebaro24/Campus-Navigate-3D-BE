@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'api.apps.ApiConfig',
     'rest_framework',
+    'corsheaders',
 ]
 
 JAZZMIN_SETTINGS = {
@@ -66,6 +67,7 @@ JAZZMIN_UI_TWEAKS = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -156,8 +158,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For CSRF protection - allow requests from the edge
-CSRF_TRUSTED_ORIGINS = [
-    'https://campus.zebaro.dev',
+CSRF_TRUSTED_ORIGINS = []
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost",
+    "https://campus.zebaro.dev",
 ]
 
 # Allowed hosts
