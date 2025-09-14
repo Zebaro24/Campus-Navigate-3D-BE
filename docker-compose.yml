@@ -23,8 +23,8 @@ services:
       - SECRET_KEY
     depends_on:
       - campus-navigate-3d-db
-    ports:
-      - "${SERVER_PORT}:8000"
+    expose:
+      - "8000"
     volumes:
       - ./models_3d:/app/models_3d
       - ./images:/app/images
