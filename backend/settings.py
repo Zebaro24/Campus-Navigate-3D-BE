@@ -158,7 +158,10 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # For CSRF protection - allow requests from the edge
-CSRF_TRUSTED_ORIGINS = []
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost",
+    "https://campus.zebaro.dev",
+]
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
